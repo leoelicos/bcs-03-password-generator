@@ -16,7 +16,7 @@ Click on [Password Generator](https://leoelicos.github.io/bcs-03-password-genera
 
 ### Password Generator
 
-![Password Generator]
+![Screenshot of Password Generator](./images/deployed.jpg)
 
 ## Credits
 
