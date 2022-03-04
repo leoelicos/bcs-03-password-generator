@@ -3,20 +3,27 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<link rel="stylesheet" href="./css/style.css" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Password Generator</title>
+		<link rel="stylesheet" href="./css/style.css" />
 	</head>
 	<body>
-		<header><h1>Password Generator</h1></header>
-		<div class="container">
-			<h2>Generate a Password</h2>
-			<hr />
-			<div class="result-container">
-				<span id="result">Your Secure Password</span>
+		<div class="wrapper">
+			<header>
+				<h1>Password Generator</h1>
+			</header>
+			<div class="card">
+				<div class="card-header">
+					<h2>Generate a Password</h2>
+				</div>
+				<div class="card-body">
+					<textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+				</div>
+				<div class="card-footer">
+					<button id="generate" class="btn">Generate Password</button>
+				</div>
 			</div>
-			<button class="btn" id="generate">Generate Password</button>
-			<script src="./scripts/script.js"></script>
 		</div>
+		<script src="./scripts/script.js"></script>
 	</body>
 </html>

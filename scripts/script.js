@@ -1,74 +1,18 @@
-// Get ASCII Codes from https://www.w3schools.com/charsets/ref_html_ascii.asp
+// Assignment Code
+var generateBtn = document.querySelector('#generate');
 
-// digits
-var ascii_code_digit_0 = 48;
-var ascii_code_digit_9 = 57;
-var total_digits = ascii_code_digit_9 - ascii_code_digit_0 + 1;
+// Write password to the #password input
+function writePassword() {
+	var password = generatePassword();
+	var passwordText = document.querySelector('#password');
 
-// upper letters
-var ascii_code_uppercase_A = 65;
-var ascii_code_uppercase_Z = 90;
-var total_upper_letters = ascii_code_uppercase_Z - ascii_code_uppercase_A + 1;
-
-// lower letters
-var ascii_code_lowercase_a = 97;
-var ascii_code_lowercase_z = 122;
-var total_lower_letters = ascii_code_lowercase_z - ascii_code_lowercase_a + 1;
-
-// symbols - range 1
-var ascii_code_exclamation_mark = 33;
-var ascii_code_slash = 47;
-// symbols - range 2
-var ascii_code_colon = 58;
-var ascii_code_at_sign = 64;
-// symbols - range 3
-var ascii_code_left_square_bracket = 91;
-var ascii_code_grave_accent = 96;
-// symbols - range 4
-var ascii_code_left_curly_brace = 123;
-var ascii_code_tilde = 126;
-
-// String.fromCharCode() method to generate a string of 1 character
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
-
-// from 0 to 9
-function getRandomNumber() {
-	return String.fromCharCode(Math.floor(Math.random() * total_digits) + ascii_code_digit_0);
+	passwordText.value = password;
 }
 
-// from A to Z
-function getRandomUpper() {
-	return String.fromCharCode(Math.floor(Math.random() * total_upper_letters) + ascii_code_uppercase_A);
-}
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
 
-//  from a to z
-function getRandomLower() {
-	return String.fromCharCode(Math.floor(Math.random() * total_lower_letters) + ascii_code_lowercase_a);
-}
-
-// from ! to ~
-function getRandomSymbol() {
-	var symbols = '';
-	// symbols from ! to /
-	for (var i = ascii_code_exclamation_mark; i <= ascii_code_slash; i++) {
-		symbols = symbols.concat(String.fromCharCode(i));
-	}
-	// symbols from : to @
-	for (var i = ascii_code_colon; i <= ascii_code_at_sign; i++) {
-		symbols = symbols.concat(String.fromCharCode(i));
-	}
-	// symbols from [ to `
-	for (var i = ascii_code_left_square_bracket; i <= ascii_code_grave_accent; i++) {
-		symbols = symbols.concat(String.fromCharCode(i));
-	}
-	// symbols from { to ~
-	for (var i = ascii_code_left_curly_brace; i <= ascii_code_tilde; i++) {
-		symbols = symbols.concat(String.fromCharCode(i));
-	}
-	return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-// Object — an index of functions to hold use preferences
+// Object preferences — an index of functions to hold user preferences
 var preferences = {
 	passwordLength: 0,
 	randomNumbers: true,
@@ -78,7 +22,7 @@ var preferences = {
 };
 
 // get user preferences
-document.getElementById('generate').addEventListener('click', function () {
+function generatePassword() {
 	// password length
 	preferences.passwordLength = window.prompt('Password Length\n\nType a number from 8 to 128 and press OK.', '8');
 
@@ -86,7 +30,7 @@ document.getElementById('generate').addEventListener('click', function () {
 	if (preferences.passwordLength == null) {
 		// null
 		window.alert('Bye\n');
-		return;
+		return '';
 	} else if (+preferences.passwordLength >= 8 && +preferences.passwordLength <= 128) {
 		// valid
 		window.alert('Password length: ' + preferences.passwordLength + ' \n');
@@ -96,7 +40,7 @@ document.getElementById('generate').addEventListener('click', function () {
 			if (preferences.passwordLength == null) {
 				// cancel
 				window.alert('Bye\n');
-				return;
+				return '';
 			}
 			preferences.passwordLength = window.prompt('You entered ' + preferences.passwordLength + '. Do try again.\nType a number from 8 to 128 and press OK.\n', '8');
 		}
@@ -108,7 +52,7 @@ document.getElementById('generate').addEventListener('click', function () {
 	if (preferences.randomNumbers == null) {
 		// user cancel
 		window.alert('Bye ✌🏻\n');
-		return;
+		return '';
 	} else if (preferences.randomNumbers == 'Y' || preferences.randomNumbers == 'y') {
 		// user valid
 		preferences.randomNumbers = true;
@@ -123,7 +67,7 @@ document.getElementById('generate').addEventListener('click', function () {
 			if (preferences.randomNumbers == null) {
 				// user pressed cancel
 				window.alert('Bye\n');
-				return;
+				return '';
 			}
 			preferences.randomNumbers = window.prompt('You entered ' + preferences.randomNumbers + '. Do try again.\nInclude numbers?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
 		}
@@ -135,7 +79,7 @@ document.getElementById('generate').addEventListener('click', function () {
 	if (preferences.randomUpperLetters == null) {
 		// user cancel
 		window.alert('Bye ✌🏻\n');
-		return;
+		return '';
 	} else if (preferences.randomUpperLetters == 'Y' || preferences.randomUpperLetters == 'y') {
 		// user valid
 		preferences.randomUpperLetters = true;
@@ -150,7 +94,7 @@ document.getElementById('generate').addEventListener('click', function () {
 			if (preferences.randomUpperLetters == null) {
 				// user pressed cancel
 				window.alert('Bye\n');
-				return;
+				return '';
 			}
 			preferences.randomUpperLetters = window.prompt('You entered ' + preferences.randomUpperLetters + '. Do try again.\nInclude uppercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
 		}
@@ -162,7 +106,7 @@ document.getElementById('generate').addEventListener('click', function () {
 	if (preferences.randomLowerLetters == null) {
 		// user cancel
 		window.alert('Bye ✌🏻\n');
-		return;
+		return '';
 	} else if (preferences.randomLowerLetters == 'Y' || preferences.randomLowerLetters == 'y') {
 		// user valid
 		preferences.randomLowerLetters = true;
@@ -177,7 +121,7 @@ document.getElementById('generate').addEventListener('click', function () {
 			if (preferences.randomLowerLetters == null) {
 				// user pressed cancel
 				window.alert('Bye\n');
-				return;
+				return '';
 			}
 			preferences.randomLowerLetters = window.prompt('You entered ' + preferences.randomLowerLetters + '. Do try again.\nInclude lowercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
 		}
@@ -189,7 +133,7 @@ document.getElementById('generate').addEventListener('click', function () {
 	if (preferences.randomSymbols == null) {
 		// user cancel
 		window.alert('Bye ✌🏻\n');
-		return;
+		return '';
 	} else if (preferences.randomSymbols == 'Y' || preferences.randomSymbols == 'y') {
 		// user valid
 		preferences.randomSymbols = true;
@@ -204,15 +148,15 @@ document.getElementById('generate').addEventListener('click', function () {
 			if (preferences.randomSymbols == null) {
 				// user pressed cancel
 				window.alert('Bye\n');
-				return;
+				return '';
 			}
 			preferences.randomSymbols = window.prompt('You entered ' + preferences.randomSymbols + '. Do try again.\nInclude symbols?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
 		}
 	}
+	var finalPassword = getPassword(preferences.passwordLength, preferences.randomNumbers, preferences.randomUpperLetters, preferences.randomLowerLetters, preferences.randomSymbols);
 
-	document.getElementById('result').innerHTML = getPassword(preferences.passwordLength, preferences.randomNumbers, preferences.randomUpperLetters, preferences.randomLowerLetters, preferences.randomSymbols);
-	window.alert('Generated!');
-});
+	return finalPassword;
+}
 
 // returns a password based on the argument of number passwordLength, boolean randomNumbers, boolean randomUpperLetters, boolean randomLowerLetters, boolean randomSymbols
 function getPassword(passwordLength, randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols) {
