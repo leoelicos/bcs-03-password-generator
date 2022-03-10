@@ -1,4 +1,5 @@
-// Assignment Code
+// this Javascript document holds the code to run the Password Generator defined in index.html and style.css
+
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
@@ -12,192 +13,204 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 
-// Object preferences — an index of functions to hold user preferences
-var preferences = {
-	passwordLength: 0,
-	randomNumbers: true,
-	randomUpperLetters: true,
-	randomLowerLetters: true,
-	randomSymbols: true,
+// preference — global object to store user preference
+var preference = {
+	characters: 0,
+	numbers: true,
+	upperLetters: true,
+	lowerLetters: true,
+	symbols: true,
 };
 
-// get user preferences
-function generatePassword() {
-	// password length
-	preferences.passwordLength = window.prompt('Password Length\n\nType a number from 8 to 128 and press OK.', '8');
+const minCharacters = 8;
+const maxCharacters = 128;
+var validations = '';
 
-	// valdiate data
-	if (preferences.passwordLength == null) {
-		// null
-		window.alert('Bye\n');
-		return '';
-	} else if (+preferences.passwordLength >= 8 && +preferences.passwordLength <= 128) {
-		// valid
-		window.alert('Password length: ' + preferences.passwordLength + ' \n');
-	} else {
-		// invalid
-		while (!(+preferences.passwordLength >= 8 && +preferences.passwordLength <= 128)) {
-			if (preferences.passwordLength == null) {
-				// cancel
-				window.alert('Bye\n');
-				return '';
-			}
-			preferences.passwordLength = window.prompt('You entered ' + preferences.passwordLength + '. Do try again.\nType a number from 8 to 128 and press OK.\n', '8');
-		}
-	}
-
-	// include numbers
-	preferences.randomNumbers = window.prompt('Include numbers?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-
-	if (preferences.randomNumbers == null) {
-		// user cancel
-		window.alert('Bye ✌🏻\n');
-		return '';
-	} else if (preferences.randomNumbers == 'Y' || preferences.randomNumbers == 'y') {
-		// user valid
-		preferences.randomNumbers = true;
-		window.alert('Okay, including numbers.\n');
-	} else if (preferences.randomNumbers == 'N' || preferences.randomNumbers == 'n') {
-		// user valid
-		preferences.randomNumbers = false;
-		window.alert('Okay, no numbers.\n');
-	} else {
-		// user invalid
-		while (preferences.randomNumbers !== 'Y' && preferences.randomNumbers !== 'y' && preferences.randomNumbers !== 'N' && preferences.randomNumbers !== 'n') {
-			if (preferences.randomNumbers == null) {
-				// user pressed cancel
-				window.alert('Bye\n');
-				return '';
-			}
-			preferences.randomNumbers = window.prompt('You entered ' + preferences.randomNumbers + '. Do try again.\nInclude numbers?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-		}
-	}
-
-	// include uppercase letters
-	preferences.randomUpperLetters = window.prompt('Include uppercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-
-	if (preferences.randomUpperLetters == null) {
-		// user cancel
-		window.alert('Bye ✌🏻\n');
-		return '';
-	} else if (preferences.randomUpperLetters == 'Y' || preferences.randomUpperLetters == 'y') {
-		// user valid
-		preferences.randomUpperLetters = true;
-		window.alert('Okay, include uppercase letters.\n');
-	} else if (preferences.randomUpperLetters == 'N' || preferences.randomUpperLetters == 'n') {
-		// user valid
-		preferences.randomUpperLetters = false;
-		window.alert('Okay, no uppercase letters.\n');
-	} else {
-		// user invalid
-		while (preferences.randomUpperLetters !== 'Y' && preferences.randomUpperLetters !== 'y' && preferences.randomUpperLetters !== 'N' && preferences.randomUpperLetters !== 'n') {
-			if (preferences.randomUpperLetters == null) {
-				// user pressed cancel
-				window.alert('Bye\n');
-				return '';
-			}
-			preferences.randomUpperLetters = window.prompt('You entered ' + preferences.randomUpperLetters + '. Do try again.\nInclude uppercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-		}
-	}
-
-	// include lowercase letters
-	preferences.randomLowerLetters = window.prompt('Include lowercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-
-	if (preferences.randomLowerLetters == null) {
-		// user cancel
-		window.alert('Bye ✌🏻\n');
-		return '';
-	} else if (preferences.randomLowerLetters == 'Y' || preferences.randomLowerLetters == 'y') {
-		// user valid
-		preferences.randomLowerLetters = true;
-		window.alert('Okay, include lowercase letters.\n');
-	} else if (preferences.randomLowerLetters == 'N' || preferences.randomLowerLetters == 'n') {
-		// user valid
-		preferences.randomLowerLetters = false;
-		window.alert('Okay, no lowercase letters.\n');
-	} else {
-		// user invalid
-		while (preferences.randomLowerLetters !== 'Y' && preferences.randomLowerLetters !== 'y' && preferences.randomLowerLetters !== 'N' && preferences.randomLowerLetters !== 'n') {
-			if (preferences.randomLowerLetters == null) {
-				// user pressed cancel
-				window.alert('Bye\n');
-				return '';
-			}
-			preferences.randomLowerLetters = window.prompt('You entered ' + preferences.randomLowerLetters + '. Do try again.\nInclude lowercase letters?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-		}
-	}
-
-	// include symbols
-	preferences.randomSymbols = window.prompt('Include symbols?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-
-	if (preferences.randomSymbols == null) {
-		// user cancel
-		window.alert('Bye ✌🏻\n');
-		return '';
-	} else if (preferences.randomSymbols == 'Y' || preferences.randomSymbols == 'y') {
-		// user valid
-		preferences.randomSymbols = true;
-		window.alert('Okay, include symbols.\n');
-	} else if (preferences.randomSymbols == 'N' || preferences.randomSymbols == 'n') {
-		// user valid
-		preferences.randomSymbols = false;
-		window.alert('Okay, no symbols.\n');
-	} else {
-		// user invalid
-		while (preferences.randomSymbols !== 'Y' && preferences.randomSymbols !== 'y' && preferences.randomSymbols !== 'N' && preferences.randomSymbols !== 'n') {
-			if (preferences.randomSymbols == null) {
-				// user pressed cancel
-				window.alert('Bye\n');
-				return '';
-			}
-			preferences.randomSymbols = window.prompt('You entered ' + preferences.randomSymbols + '. Do try again.\nInclude symbols?\n\nType Y for Yes and N for No.\nEnter your choice and press OK, or cancel', 'Y');
-		}
-	}
-	var finalPassword = getPassword(preferences.passwordLength, preferences.randomNumbers, preferences.randomUpperLetters, preferences.randomLowerLetters, preferences.randomSymbols);
-
-	return finalPassword;
+function cancelMessage() {
+	window.alert(validations + '\nYou cancelled. Bye ✌🏻\n');
 }
 
-// returns a password based on the argument of number passwordLength, boolean randomNumbers, boolean randomUpperLetters, boolean randomLowerLetters, boolean randomSymbols
-function getPassword(passwordLength, randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols) {
+// returns a password as a string
+function generatePassword() {
+	validations = 'Password preferences\n***********************\n';
+	validations += 'Number of characters? ';
+
+	// get user preference for password length
+	preference.characters = window.prompt(validations + '(8–128)', '128');
+
+	// validate data
+	if (preference.characters == null) {
+		// user cancelled
+		cancelMessage();
+		return '';
+	}
+	while (!(+preference.characters >= minCharacters && +preference.characters <= maxCharacters)) {
+		// user entered invalid number, so keep trying
+		preference.characters = window.prompt(`${validations}\n"${preference.characters}" is invalid. Type a number from 8 to 128`, '8');
+		if (preference.characters == null) {
+			// user cancelled
+			cancelMessage();
+			return '';
+		}
+	}
+	if (+preference.characters >= minCharacters && +preference.characters <= maxCharacters) {
+		// user was valid
+		validations += preference.characters + '\n';
+	}
+
+	// get user preference for including numbers
+	validations += 'Include numbers? ';
+	preference.numbers = window.prompt(validations + ' (y/n)', 'y');
+
+	if (preference.numbers == null) {
+		// user cancelled
+		cancelMessage();
+		return '';
+	}
+	while (preference.numbers.toLowerCase() !== 'y' && preference.numbers.toLowerCase() !== 'n') {
+		// user entered invalid character, so keep trying
+		preference.numbers = window.prompt(`${validations}\n"${preference.numbers}" is invalid. Type (y/n)`, 'y');
+		if (preference.numbers == null) {
+			// user cancelled
+			cancelMessage();
+			return '';
+		}
+	}
+	if (preference.numbers.toLowerCase() == 'y') {
+		// user was valid
+		validations += '✅\n';
+		preference.numbers = true;
+	} else if (preference.numbers.toLowerCase() == 'n') {
+		// user was valid
+		validations += '🚫\n';
+		preference.numbers = false;
+	}
+
+	// get user preference for including uppercase letters
+	validations += 'Include uppercase letters? ';
+	preference.upperLetters = window.prompt(validations + ' (y/n)', 'y');
+
+	if (preference.upperLetters == null) {
+		// user cancelled
+		cancelMessage();
+		return '';
+	}
+
+	while (preference.upperLetters.toLowerCase() !== 'y' && preference.upperLetters.toLowerCase() !== 'n') {
+		// user entered invalid character, so keep trying
+		preference.upperLetters = window.prompt(`${validations}\n"${preference.upperLetters}" is invalid. Type (y/n)`, 'y');
+		if (preference.upperLetters == null) {
+			// user cancelled
+			cancelMessage();
+			return '';
+		}
+	}
+
+	if (preference.upperLetters.toLowerCase() == 'y') {
+		// user was valid
+		validations += '✅\n';
+		preference.upperLetters = true;
+	} else if (preference.upperLetters.toLowerCase() == 'n') {
+		// user was valid
+		validations += '🚫\n';
+		preference.upperLetters = false;
+	}
+
+	// get user preference for including lowercase letters
+	validations += 'Include lowercase letters? ';
+	preference.lowerLetters = window.prompt(validations + ' (y/n)', 'y');
+
+	if (preference.lowerLetters == null) {
+		// user cancelled
+		cancelMessage();
+		return '';
+	}
+
+	while (preference.lowerLetters.toLowerCase() !== 'y' && preference.lowerLetters.toLowerCase() !== 'n') {
+		// user entered invalid character, so keep trying
+		preference.lowerLetters = window.prompt(`${validations}\n"${preference.lowerLetters}" is invalid. Type (y/n)`, 'y');
+		if (preference.lowerLetters == null) {
+			// user cancelled
+			cancelMessage();
+			return '';
+		}
+	}
+
+	if (preference.lowerLetters.toLowerCase() == 'y') {
+		// user was valid
+		validations += '✅\n';
+		preference.lowerLetters = true;
+	} else if (preference.lowerLetters.toLowerCase() == 'n') {
+		// user was valid
+		validations += '🚫\n';
+		preference.lowerLetters = false;
+	}
+
+	// get user preference for including symbols
+	validations += 'Include symbols? ';
+	preference.symbols = window.prompt(validations + ' (y/n)', 'y');
+
+	if (preference.symbols == null) {
+		// user cancelled
+		cancelMessage();
+		return '';
+	}
+	while (preference.symbols.toLowerCase() !== 'y' && preference.symbols.toLowerCase() !== 'n') {
+		// user entered invalid character, so keep trying
+		preference.symbols = window.prompt(`${validations}\n"${preference.symbols}" is invalid. Type (y/n)`, 'y');
+		if (preference.symbols == null) {
+			// user cancelled
+			cancelMessage();
+			return '';
+		}
+	}
+	if (preference.symbols.toLowerCase() == 'y') {
+		// user was valid
+		validations += '✅\n';
+		preference.symbols = true;
+	} else if (preference.symbols.toLowerCase() == 'n') {
+		// user was valid
+		validations += '🚫\n';
+		preference.symbols = false;
+	}
+
+	// return a password based on characters, randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols
+	var finalPassword = getPassword(preference.characters, preference.numbers, preference.upperLetters, preference.lowerLetters, preference.symbols);
+
+	if (finalPassword.length === 0) {
+		validations += 'No numbers, letters or symbols were chosen. Try again?';
+		if (window.confirm(validations) === true) {
+			return generatePassword();
+		} else {
+			cancelMessage();
+			return '';
+		}
+	} else {
+		validations += 'Password generated selected!\nPress OK to also display on screen, or Cancel to not show on screen.';
+		var displayOnScreen = window.prompt(validations, finalPassword);
+		if (displayOnScreen == null) {
+			finalPassword = '';
+		}
+		return finalPassword;
+	}
+}
+
+// return a password based on characters, randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols
+function getPassword(characters, randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols) {
 	var randomString = getRandomString(randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols);
 	var password = '';
-	for (var i = 0; i < passwordLength; i++) {
+	for (var i = 0; i < characters; i++) {
 		password += getRandomCharacter(randomString);
-	}
-	if (password.length === 0) {
-		password += "You didn't choose any character types (numbers, letters, symbols). Try again?";
 	}
 	return password;
 }
 
-// returns one random character based on the booleans that are true
-function getRandomCharacter(randomString) {
-	// user has chosen no character types
-	if (randomString.length === 0) {
-		return '';
-	} else {
-		return randomString[Math.floor(Math.random() * randomString.length)];
-	}
+// make a string of all wanted characters
+function getRandomString(number, upper, lower, symbol) {
+	return (number ? '0123456789' : '') + (upper ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' : '') + (lower ? 'abcdefghijklmnopqrstuvwxyz' : '') + (symbol ? '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' : '');
 }
 
-// make a string of all wanted characters
-function getRandomString(randomNumbers, randomUpperLetters, randomLowerLetters, randomSymbols) {
-	var randomString = '';
-	var i = 0;
-
-	if (randomNumbers === true) {
-		randomString += '0123456789';
-	}
-	if (randomUpperLetters === true) {
-		randomString += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	}
-	if (randomLowerLetters === true) {
-		randomString += 'abcdefghijklmnopqrstuvwxyz';
-	}
-	if (randomSymbols === true) {
-		randomString += '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
-	}
-
-	return randomString;
+// get a random character from argument string, or '' if string empty
+function getRandomCharacter(string) {
+	return string.length === 0 ? '' : string[Math.floor(Math.random() * string.length)];
 }
